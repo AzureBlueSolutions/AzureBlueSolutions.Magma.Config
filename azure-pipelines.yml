@@ -32,15 +32,6 @@ steps:
     echo "##vso[build.updatebuildnumber]$(GitVersion.FullSemVer)"
   displayName: 'Set Azure DevOps build number'
 
-- script: |
-    dotnet nuget add source \
-      --name github \
-      --username AzureBlueSolutions \
-      --password $(GITHUB_PAT) \
-      --store-password-in-clear-text \
-      "https://nuget.pkg.github.com/AzureBlueSolutions/index.json"
-  displayName: 'Add GitHub Packages source'
-
 - script: dotnet restore
   displayName: 'Restore'
 
@@ -50,13 +41,9 @@ steps:
 - script: dotnet pack -c Release --no-build
   displayName: 'Pack (Release)'
 
-- script: dotnet nuget list source
-  displayName: 'Verify NuGet sources'
-
 - script: |
-    dotnet nuget push \
-      **/bin/Release/*.nupkg \
-      --source github \
-      --api-key $(GITHUB_PAT) \
+    dotnet nuget push **/bin/Release/*.nupkg \
+      --source https://api.nuget.org/v3/index.json \
+      --api-key $(NUGET_API_KEY) \
       --skip-duplicate
-  displayName: 'Publish to GitHub Packages'
+  displayName: 'Publish to NuGet.org'
