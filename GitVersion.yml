@@ -1,2 +1,29 @@
-workflow: GitHubFlow/v1
-next-version: 0.1.0
+mode: ContinuousDelivery
+
+branches:
+  main:
+    tag: ''
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+
+  develop:
+    tag: 'alpha'
+    increment: Minor
+    prevent-increment-of-merged-branch-version: false
+
+  feature:
+    tag: 'alpha'
+    increment: Patch
+    source-branches: ['develop']
+
+  release:
+    tag: 'rc'
+    increment: Patch
+
+  hotfix:
+    tag: 'hotfix'
+    increment: Patch
+
+ignore:
+  sha: []
