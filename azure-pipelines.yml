@@ -14,7 +14,7 @@ steps:
     displayName: 'Setup .NET SDK'
     inputs:
       packageType: 'sdk'
-      version: '9.x'
+      version: '10.x'
 
   - task: gitversion-setup@4
     displayName: 'Install GitVersion'
