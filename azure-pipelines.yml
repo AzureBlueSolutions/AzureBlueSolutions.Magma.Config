@@ -1,0 +1,49 @@
+trigger:
+  branches:
+    include: [ main ]
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+    submodules: false
+
+  - task: UseDotNet@2
+    displayName: 'Setup .NET SDK'
+    inputs:
+      packageType: 'sdk'
+      version: '9.x'
+
+  - task: gitversion-setup@4
+    displayName: 'Install GitVersion'
+    inputs:
+      versionSpec: '6.4.x'
+
+  - task: gitversion-execute@4
+    name: GitVersion
+    displayName: 'Determine SemVer'
+    inputs:
+      configFilePath: 'GitVersion.yml'
+      updateAssemblyInfo: false
+
+  - script: |
+      echo "##vso[build.updatebuildnumber]$(GitVersion.FullSemVer)"
+    displayName: 'Set Azure DevOps build number'
+
+  - script: dotnet restore
+    displayName: 'Restore'
+
+  - script: dotnet build -c Release --no-restore
+    displayName: 'Build (Release)'
+
+  - script: dotnet pack -c Release --no-build
+    displayName: 'Pack (Release)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish packages as artifacts'
+    inputs:
+      PathtoPublish: '$(System.DefaultWorkingDirectory)'
+      ArtifactName: 'magma-config'
+      publishLocation: 'Container'
