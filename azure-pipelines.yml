@@ -32,7 +32,6 @@ steps:
     echo "##vso[build.updatebuildnumber]$(GitVersion.FullSemVer)"
   displayName: 'Set Azure DevOps build number'
 
-# 🔐 Add GitHub Packages source
 - script: |
     dotnet nuget add source \
       --name github \
