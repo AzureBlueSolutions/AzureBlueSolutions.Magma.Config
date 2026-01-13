@@ -2,12 +2,12 @@ mode: ContinuousDelivery
 
 branches:
   main:
+    mode: ContinuousDeployment 
     increment: Patch
     prevent-increment:
       of-merged-branch: true
-    track-merge-target: false
-    pre-release-weight: 0
     label: ''
+    pre-release-weight: 0
     source-branches: []
 
   develop:
