@@ -52,7 +52,7 @@ steps:
 
 - script: |
     dotnet nuget push \
-      bin/Release/*.nupkg \
+      **/bin/Release/*.nupkg \
       --source github \
       --api-key $(GITHUB_PAT) \
       --skip-duplicate
