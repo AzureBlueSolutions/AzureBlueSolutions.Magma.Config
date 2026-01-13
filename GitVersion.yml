@@ -2,28 +2,31 @@ mode: ContinuousDelivery
 
 branches:
   main:
-    tag: ''
     increment: Patch
     prevent-increment-of-merged-branch-version: true
     track-merge-target: false
+    pre-release-weight: 0
+    source-branches: []
 
   develop:
-    tag: 'alpha'
     increment: Minor
-    prevent-increment-of-merged-branch-version: false
+    pre-release-label: alpha
+    source-branches: []
 
   feature:
-    tag: 'alpha'
     increment: Patch
-    source-branches: ['develop']
+    pre-release-label: alpha
+    source-branches: [develop]
 
   release:
-    tag: 'rc'
     increment: Patch
+    pre-release-label: rc
+    source-branches: [develop]
 
   hotfix:
-    tag: 'hotfix'
     increment: Patch
+    pre-release-label: hotfix
+    source-branches: [main]
 
 ignore:
   sha: []
