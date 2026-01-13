@@ -50,6 +50,9 @@ steps:
 - script: dotnet pack -c Release --no-build
   displayName: 'Pack (Release)'
 
+- script: dotnet nuget list source
+  displayName: 'Verify NuGet sources'
+
 - script: |
     dotnet nuget push \
       **/bin/Release/*.nupkg \
