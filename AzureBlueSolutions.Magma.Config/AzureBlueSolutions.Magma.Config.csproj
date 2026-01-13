@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>14.0</LangVersion>
+		<AssemblyName>AzureBlueSolutions.Magma.Config</AssemblyName>
+		<RootNamespace>AzureBlueSolutions.Magma.Config</RootNamespace>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>AzureBlueSolutions.Magma.Config</PackageId>
+		<Title>AzureBlueSolutions Magma Config</Title>
+		<Authors>AzureBlueSolutions</Authors>
+		<Company>AzureBlueSolutions</Company>
+		<Description>Configuration model + IO helpers for Magma build tooling.</Description>
+		<PackageTags>magma;config;json;minecraft;tooling</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/AzureBlueSolutions/AzureBlueSolutions.Magma.Config</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/AzureBlueSolutions/AzureBlueSolutions.Magma.Config</PackageProjectUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" Version="6.5.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Text.Json" Version="10.0.1" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="icon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+</Project>
